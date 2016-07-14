@@ -1,0 +1,71 @@
+<%= nested_form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :location_of_lost %><br>
+    <%= f.text_field :location_of_lost %>
+  </div>
+  <div class="field">
+    <%= f.label :lon %><br>
+    <%= f.text_field :lon %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_lost %><br>
+    <%= f.date_select :date_of_lost %>
+  </div>
+  <div class="field">
+    <%= f.label :last_condition %><br>
+    <%= f.text_field :last_condition %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.check_box :published %>
+  </div>
+  <div class="field">
+    <%= f.label :author_comments %><br>
+    <%= f.text_field :author_comments %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+
+    <%= f.fields_for :images do |p| %>
+        <div class="field">
+          <%= p.label :photo %><br>
+          <%= p.file_field :photo %>
+          <%= p.link_to_remove "Remove this photo" %>
+        </div>
+    <% end %>
+    <p><%= f.link_to_add "Add a photo", :images %></p>
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

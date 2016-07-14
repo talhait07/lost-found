@@ -40,6 +40,9 @@ group :development, :test do
   gem 'byebug'
 end
 gem 'pundit'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'nested_form'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
