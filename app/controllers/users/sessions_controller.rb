@@ -18,8 +18,13 @@ class Users::SessionsController <  Devise::SessionsController
     super
   end
 
-  # protected
+  protected
 
+  def after_sign_in_path_for(resource)
+    return admins_path if resource.admin?
+    return moderator_path(resource.id) if resource.moderator?
+    return root_path
+  end
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
